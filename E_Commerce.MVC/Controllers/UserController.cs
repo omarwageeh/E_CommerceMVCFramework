@@ -1,11 +1,7 @@
 ﻿using E_Commerce.Model;
 using E_Commerce.MVC.Models;
 using E_Commerce.Repository.Interface;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using System.Web;
 using System.Web.Mvc;
 
 namespace E_Commerce.MVC.Controllers
@@ -63,8 +59,14 @@ namespace E_Commerce.MVC.Controllers
                 }
                 user.isActive = true;
                 _unitOfWork.UserRepository.Update(user);
+                return RedirectToAction("Home", user);
             }
             return View();
+        }
+        [HttpGet]
+        public ActionResult Home(User user) 
+        {
+            return View(user);
         }
     }
 }
